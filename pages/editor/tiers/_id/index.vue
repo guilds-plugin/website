@@ -4,7 +4,10 @@
     <p v-else-if="$fetchState.error">
       Error while fetching posts: {{ $fetchState.error.message }}
     </p>
-    <table v-else class="table table-striped table-dark">
+    <ul v-else>
+      <tier v-for="tier in tiers" :key="tier.level" />
+    </ul>
+    <!-- <table v-else class="table table-striped table-dark">
       <b-thead>
         <b-tr>
           <b-th>Level</b-th>
@@ -35,12 +38,17 @@
           <b-td>{{ tier.useBuffs }}</b-td>
         </b-tr>
       </b-tbody>
-    </table>
+    </table> -->
   </div>
 </template>
 
 <script>
+import tier from '~/components/editor/tier.vue'
+
 export default {
+  components: {
+    tier
+  },
   async fetch() {
     this.tiers = await this.$axios.$get(
       `https://paste.helpch.at/raw/${this.$route.params.id}`
