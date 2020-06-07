@@ -4,7 +4,7 @@
       <code>{{ tier.level }}</code>
     </div>
     <div v-else>
-      <input v-model="level.value" v-autofocus type="number" />
+      <input v-model="level.value" type="number" />
     </div>
   </li>
 </template>
